@@ -1,0 +1,140 @@
+REACT -
+    collection of libraries
+    consist of different components, used to display contents
+    all components are arranged in a tree structure
+    tree structure has a single parent/root node known as "APP component"
+    components are reusable
+    Pure JavaScript functions to build components 
+        which will return how to display contents in browser
+        these functions are capable of doing single task with the help of arguments
+        functions with no side effects
+    Declarative Approach
+    virtual DOM: Light weight memory reperesentation of real DOM
+    Babel library: used to display contents into browser
+    JSX (JavaScript XML) JS extension for writing html code in JavaScript
+        used to display contents in browser
+        JSX elements:
+            ex: const heading = <h1> Heading </h1>
+        Rules for using JSX
+            1. Every JSX elements must be inside a single tag. Parent tag can be any Container tags(div/section/article/etc..)
+               or react fragments(<> </>) tag without name
+            2. In JSX we have to use "camel case" to write JSX : eg: fontSize
+            3. Every JSX code must have a closing tag
+                If a tag has content then:
+                    <startingTag> content </endingTag>
+                If a tag has no content:
+                    <startingTag></endingTag> / we can use self closing tags (<startingTag/>)
+            4. Instead of attribute "class" we use "className" in JSX
+            5. Instead of attribute "for" we use "htmlFor" in JSX
+            6. We can directly pass JS code inside a curly braces (eg: {JS code})
+        
+
+React App Creation:
+    2 ways to create React App
+        - CRA(using create-react-app command)
+        - Vite : Tool for building web applications
+            Installing Vite globally : npm i -g create-vite
+            react app Creation using vite
+                npm create vite@latest reactAppname -- --template react 
+    
+Files and folder structure of react app using vite
+    - package.json - npm configuration file for the project
+    - package-lock.json - used to hold versions of dependant packages of the project
+    - eslint.config.js - JS configuration files
+    - node_modules folder - used to locally store dependent packages of project
+        we can generate node_modules folder with the help of command npm install/ npm i
+    - public folder - used to hold data that can be accessed by any part of the project
+    - index.html - the entry point of react app
+    - src folder - logic of react app is defined here
+        - main.jsx - used to render (displaying in browser) react app in html element with id as "root"
+            - createRoot(): create a root to display react components inside a browser DOM node.
+        - css file - used to define style for all components in react app
+        - app.jsx - used to create react root component
+        - asset folder : used to hold media files used in react project
+    
+components: used to display content in browser,
+            to create a component create a jsx/js file with filename starting capital letters
+    - create component in 2 ways
+        - Function / stateless based components : use js pure functions to build
+            Function name must be similar as filename
+            it must return jsx code
+        - class / statefull based components: uses class to create components
+            render method in class used to return jsx
+        - Life cycle methods of a react component
+            - Mounting phase : Putting jsx into DOM
+                - constructor()
+                - getDerivedStateFromProps() 
+                - render()
+                - componentDidMount()
+            - Updating phase : when component get updated
+                - getDerivedStateFromProps()
+                - getSnapShotBeforeUpdate()
+                - shouldComponentUpdate() : return boolean value
+                - render()
+                - componentDidUpdate()
+            - UnMounting phase : Removing component from DOM
+    
+
+    Class Based Component                                  |                    Function Based Component
+ ----------------------------------------------------------|-----------------------------------------------------------------
+    1. Using class to create,                              |                    1. Using JS pure functions and return jsx
+       render method must return jsx                       |
+    2. Statefull component                                 |                    2. Stateless component
+    3. Hooks are not used                                                       3. Hooks are used
+    4. Constructor is used to initialise                                        4. No need of constructor
+       state
+    5. Life cycle methods are available                                         5. Life cycle methods are not available
+
+
+Data sharing between react components 
+    - data can be transfered from parent to child: use "props" Object 
+
+PROPS: property of a component. Its an Object used to share data from parent to child, parent data can be shared via child
+        attribute. to access parent data 
+
+CSS styling in react
+    - Inline CSS : style attribute, style must be a js Object
+        Syntax: style = {{css property}}
+    - External CSS : style in css file, link using import statements
+    - Using CSS module files : a file with extension .module.css is known as css 'module file'
+        in this we define style in class. To use we have to import it into component file
+        - import variableName from 'moduleCss file path', to apply using variableName
+            variableName.className
+
+Event handling in React: Syntax - event = {function call}
+    Binding functions without arguments : event = {functionName}
+    Binding functions with arguments : event = {() => functionName(arguments)}
+    Binding functions with arguments as event : event = {() => functionName(event)}
+
+State in React: used to store data of a component, when a state value change component will rerenderbb
+
+RECONSILATION
+
+
+HOOKS : predefined methods in react. used to provide react component features to function based components.
+    To use a HOOK in a functional component, it has to be call the HOOK:
+        - Rules to HOOKS in functional component
+            - import HOOK in component file.
+            - should be at the top level of component. 
+            - HOOKS cannot be conditional
+        - Based on react features there are different types of HOOK are available
+            - Build-in HOOKS
+                - useState(Initial-value) hook: used to create state in functional component, this hook will return an array of 2 arguments.
+                    first argument is a state
+                    second argument is a function name used to update state.
+                    state updating functionName must start with 'set'.
+                - useEffect(callbackfn, dependency): used to apply side effects to a functional component.
+                    we can pass side effect as its first argument as callbackfn
+                    we can also pass an optional dependency argument to decide when to apply side effects in component
+                - useRef(initial value): is a react hook that lets you reference a value that's not needed for rendering. 
+                    Initial value is optional, it returns an object "current" key
+            - Custom HOOKS: create js files to define a specific function for a special task. 
+                export function from that file
+                function name must start with 'use' keyword
+
+Material UI : npm install @mui/material @emotion/react @emotion/styled
+
+Form handling in react :
+    2 different ways to manage data inside the form by a component
+        1. Controlled Components : These are components which store form data inside its own state
+        2. Uncontrolled Components : Components who access form data using its DOM elements reference
